@@ -1,0 +1,6 @@
+CREATE TABLE player (
+    playerId BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    role VARCHAR(255) NOT NULL,
+    age INT NOT NULL
+   );
