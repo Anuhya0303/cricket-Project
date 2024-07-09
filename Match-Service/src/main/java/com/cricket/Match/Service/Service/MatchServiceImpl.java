@@ -33,15 +33,7 @@ public class MatchServiceImpl implements MatchService{
     }
 	
 	
-	//JAVA 8 CONCEPT
-//	public List<Match> getMatchesByTeam(String team) {
-//        return matchRepository.findAll().stream()
-//                .filter(match -> match.getTeamA().equalsIgnoreCase(team) || match.getTeamB().equalsIgnoreCase(team))
-//                .collect(Collectors.toList());
-//    }
-//	public Event getEvent(Long eventId) {
-//		return eventRepository.findById(eventId).get();
-//	}
+	
 
 	public List<Match> getAllMatches() {
 		// TODO Auto-generated method stub
@@ -65,6 +57,7 @@ public class MatchServiceImpl implements MatchService{
 				.filter(match -> match.getmatchId().equals(matchId))
 				.findFirst()
 	    .orElseThrow(() -> new IllegalArgumentException("match with ID" +matchId + "not found"));
+		matchRepository.delete(matchToDelete);
 	}
 	
 	public Match updateMatch(Match updatedMatch) {
