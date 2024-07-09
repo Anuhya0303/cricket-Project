@@ -31,29 +31,32 @@ public class ScoreController {
 	
 	@Autowired
 	ScoreServiceImpl scoreService;
-	
+
+	/*retriveing a particular player score*/
 	@GetMapping("/player/{id}/score/{scoreId}")
 	public Optional<Score> getScore(@PathVariable Long scoreId) {
 		return scoreService.getScore(scoreId);
 	}
 	
-	
+	/*posting score to particular player*/
 	@PostMapping("/player/{id}/score")
 	public void addscore(@RequestBody Score score,@PathVariable Long id) {
 		score.setPlayer(new Player(id,"","","",null));
 		scoreService.addPlayer(score);
 	}
-	
+
+	/*deleting score of particular player score*/
 	@DeleteMapping("/player/{playerId}/score/{scoreId}")
 	public void deletePlayer(@PathVariable Long id) {
 		scoreService.deletePlayer(id);
 	}
+	/*updating a score of particular player*/
 	@PutMapping("/player/{playerId}/score/{scoreId}")
 	public void updatePlayer(@RequestBody Score score,@PathVariable Long scoreId ) {
 		scoreService.updatePlayer(score,scoreId);
 	}
 	
-	//rest
+	//restTemplate 
 	@GetMapping("/scores/rest/{matchId}")
     public Optional<Score> getMatchScore(@PathVariable Long matchId) {
     	return scoreService.getMatchScore(matchId);
