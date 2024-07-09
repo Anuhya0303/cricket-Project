@@ -20,37 +20,29 @@ public class MatchController {
 	@Autowired
 	    private MatchServiceImpl matchService;
 	
-	
+	    /*adding a match*/
 	    @PostMapping("/addMatch")
 	    public Match createMatch(@RequestBody Match match) {
 	        return matchService.createMatch(match);
 	    }
-
+            /*retriveing all matches*/
 	    @GetMapping("/getAllMatches")
 	    public List<Match> getAllMatches() {
 	        return matchService.getAllMatches();
 	    }
 
-//	     @GetMapping("/team/{team}")
-//	    public List<Match> getMatchesByTeam(@PathVariable String team) {
-//	        return matchService.getMatchesByTeam(team);
-//	     }
-	        
-//	        @GetMapping("getMatch/{matchId}")
-//	        public List<Match> getMatchById(@PathVariable Long matchId) {
-//	            return matchService.getMatchById(matchId);
-//	    }
 
+              /*retriveing match by id*/
 	      @GetMapping("/getMatch/{matchId}")
 	      public Match getMatchById(@PathVariable Long matchId) {
 	    	  return matchService.getMatchById(matchId);
 	      }
-	      
+	      /*updating a particular match*/
 	        @PutMapping("updateMatch/{matchId}")
 	        public Match updateMatch(@RequestBody Match m){
 	        	return matchService.updateMatch(m);
 	        }
-	        
+	        /*deleting a particular match*/
 	        @DeleteMapping("deleteMatch/{matchId}")
 	        public void deleteMatch(@PathVariable Long matchId) {
 	        	matchService.deleteMatch(matchId);
