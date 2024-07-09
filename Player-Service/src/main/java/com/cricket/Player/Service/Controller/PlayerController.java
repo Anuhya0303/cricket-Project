@@ -33,19 +33,23 @@ public class PlayerController {
 	
 	    @Autowired
 	    private PlayerServiceImpl playerService;
-	    
+
+	    /*retriveing all players
+	       adding description to get method and grouping get tags*/
 	    @Tag
 	    (name = "get",description="get methods for player API")
 	    @GetMapping("/players")
 		public List<Player> getAllPlayers() {
 			return playerService.getAllPlayers();
 		}
-	    
+	    /*posting a particular player
+	        adding description to post method */
 	    @PostMapping("/addPlayer")
 		public Player addPlayer(@RequestBody Player p) {
 			return playerService.addPlayer(p);
 		}
-	    
+
+	    /*retriveing a particular player*/
 	    @Tag
 	    (name = "get",description="get methods for player API")
 	    @GetMapping("/player/{playerId}")
@@ -53,7 +57,8 @@ public class PlayerController {
 			return playerService.getPlayer(playerId);
 		}
 	    
-	    
+	    /*deleting a particular player
+	      giveing response codes */
 	    @ApiResponses({@ApiResponse(responseCode = "200",
 				description = "okay",
 				content = {@Content(mediaType = "application/json",
@@ -63,18 +68,22 @@ public class PlayerController {
 			content = @Content)})
 	    @Operation(summary = "deleting a player",
 				description = "deleting a existing player. The response is deleted on player table")
+
+	    /*deleting a particular player*/
 	    @DeleteMapping("/playerr/{playerId}")
 	    public void deletePlayerById(@PathVariable Long playerId){
 	    	 playerService.deletePlayer(playerId);
 	    }
-	    
+
+	   /*updating a particular player*/
 	    @Operation(summary = "updating a player",
 				description = "update an existing player. The response is updated on player table")
 	    @PutMapping("updatePlayer/{playerId}")
 		public void updatePlayer(@RequestBody Player p) {
 	    	playerService.updatePlayer(p);
 		}
-	   
+
+	    /*retriveing data in the form of pages*/
 	    @Tag
 	    (name = "get",description="get methods for employee API")
 	    @GetMapping("/page")
